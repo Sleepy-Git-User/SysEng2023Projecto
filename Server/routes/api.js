@@ -14,7 +14,7 @@ module.exports = (components) => {
                 {name: 'Nuts', quantity: 10},
                 {name: 'Coke Zero', quantity: 10000},
                 {name: 'Pepsi', quantity: 9},
-                {name: 'Fish', quantity: 2.3233},
+                {name: 'Fiseh', quantity: 6.32},
             ]
         }});
     });

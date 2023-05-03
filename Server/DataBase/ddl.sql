@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS Customers (
   address TEXT
 );
 
-CREATE TABLE Payments (
+CREATE TABLE IF NOT EXISTS Payments (
   payment_id INTEGER PRIMARY KEY,
   sale_id INTEGER NOT NULL,
   amount DECIMAL(10, 2) NOT NULL,

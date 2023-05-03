@@ -10,7 +10,7 @@ export default function StaticDataContextProvider({children}) {
     const [increments, setIncrements] = useState(0);
 
     useEffect(() => {
-        if (!!refreshInterval) return;
+        if (!refreshInterval) return;
         setInterval(() => {
             setIncrements(increments+1)
         }, 5000)
