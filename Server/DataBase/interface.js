@@ -14,4 +14,30 @@ try {
   console.log(error);
 }
 
+//Login Page
+function loginChecker(UserID){
+
+}
+
+//Admin Page
+function makeUser(Fname,Lname){
+const user_id = Database.generateUUID("User","UserID")
+console.log(user_id);
+}
+
+function removeUser(UserID){
+
+}
+
+function toggleAdmin(UserID){
+
+}
+
+function getUserDetails(UserID){
+
+}
+
+
 module.exports = {Database};
+
+console.log(makeUser("Luke","Smith"));
