@@ -13,19 +13,19 @@ export default function Randompage(){
     const handleBackdrop = () => {setOpen(!open)}
     /* Function to change the visibility of the box */
     const [hidden, setHide] = React.useState(false)
-    const handleCheckBox = () => (setHide('visable'))
+    const handleCheckBox = () => (setHide('visible'))
     const hideBox = () => (setHide('hidden'))
 
     return(
         <Container>
             {/* List of buttons */}
-            <Button sx={{m:2, top: 67, left: 800}} variant="contained" onClick={handleBackdrop}>Logout</Button>
-            <Button sx={{m:2, top: 930, right: 100}} variant="contained" onClick={handleBackdrop} color="success">Add</Button>
-            <Button sx={{m:2, top: 930, left: 0}} variant="contained" onClick={handleBackdrop} color="error">Remove</Button>
-            <Button sx={{m:2, top: 930, left: 450}} variant="contained" onClick={() =>{handleBackdrop(); handleCheckBox();}} color="warning" >Checkout</Button>
+            <Button sx={{m:2, top: 65, left: 845, minWidth: 150, minHeight: 75}} variant="contained" onClick={handleBackdrop}>Logout</Button>
+            <Button sx={{m:2, top: 970, right: 200, minWidth: 150, minHeight: 75}} variant="contained" onClick={handleBackdrop} color="success">Add</Button>
+            <Button sx={{m:2, top: 970, right: 100, minWidth: 150, minHeight: 75}} variant="contained" onClick={handleBackdrop} color="error">Remove</Button>
+            <Button sx={{m:2, top: 970, left: 300, minWidth: 150, minHeight: 75 }} variant="contained" onClick={() =>{handleBackdrop(); handleCheckBox();}} color="warning" >Checkout</Button>
 
             {/* Username of the user will be shown here */}
-            <Typography sx={{}} variant="h3">Username</Typography>
+            <Typography sx={{color: '#5883a7'}} variant="h3">Username</Typography>
 
 
             {/* Display Box */}
@@ -34,6 +34,7 @@ export default function Randompage(){
                 border: 5 ,
                 width: 1000, 
                 height: 800, 
+                color: '#5883a7',
                 bgcolor: "white"}}
             > 
             {/* Checkout Box */}
