@@ -21,10 +21,6 @@ export default function Randompage(){
     const jeansBrought = () => (setTotal((+total + 21.00).toFixed(2)))
     const clearTotal = () => (setTotal((+total - +total).toFixed(2)))
 
-    /* Calculate discounts given the proper input */
-    const [discountCode, setDiscount] = React.useState(runningtotal)
-    const discount  = () => (setTotal((+total * 0.8).toFixed(2)))
-
     /* Change the open or close state of the backdrop */
     const [open, setOpen] = React.useState(false)
     const handleBackdrop = () => {setOpen(!open)}
@@ -56,8 +52,7 @@ export default function Randompage(){
             <Button sx={{m:2, top: 65, left: 845, minWidth: 150, minHeight: 75}} variant="contained" onClick={handleBackdrop}>Logout</Button>
             <Button sx={{m:2, top: 970, right: 200, minWidth: 150, minHeight: 75}} variant="contained" onClick={() =>{handleBackdrop(); handleAddShow();}} color="success">Add</Button>
             <Button sx={{m:2, top: 970, right: 100, minWidth: 150, minHeight: 75}} variant="contained" onClick={handleBackdrop} color="error">Remove</Button>
-            <Button sx={{m:2, top: 970, left: 0, minWidth: 150, minHeight: 75}} variant="contained" onClick={() =>{handleBackdrop(); discount(); handleDiscountShow();}} color="secondary">Discount</Button>
-            <Button sx={{m:2, top: 970, left: 100, minWidth: 150, minHeight: 75 }} variant="contained" onClick={() =>{handleBackdrop(); handleCheckBoxShow();}} color="warning" >Checkout</Button>
+            <Button sx={{m:2, top: 970, left: 300, minWidth: 150, minHeight: 75 }} variant="contained" onClick={() =>{handleBackdrop(); handleCheckBoxShow();}} color="warning" >Checkout</Button>
 
             {/* Username of the user will be shown here */}
             <Typography sx={{color: '#5883a7'}} variant="h3">Username</Typography>
@@ -114,23 +109,6 @@ export default function Randompage(){
                     
                 </Box>
 
-                    {/* Discount Box */}
-                <Box visibility={hiddenDiscount} position={'absolute'} display="flex" justifyContent="center" alignItems="center" variant="outlined" sx={{ 
-                    zIndex: 1200,
-                    border: 5 ,
-                    width: 300, 
-                    height: 200, 
-                    bgcolor: "white"}} 
-                    >
-                    <Input
-                    name="Code"
-                    placeholder="Discount Code"
-                    defaultValue = ''
-                    required
-                    size="large"
-                    />
-                                        
-                </Box>
 
                 {/* Price */}
                 <Box position={'absolute'} display="flex" justifyContent="right" alignItems="right" variant="outlined" sx={{ 
@@ -146,7 +124,7 @@ export default function Randompage(){
             </Box>
 
                 {/* Backdrop that shows loading when a button is pressed. */}
-                <Backdrop open={open} onClick={() =>{handleBackdrop(); handleConfirmHide(); handleCheckBoxHide(); handleAddHide(); handleDiscountHide();}} sx={{zIndex: 100, position: "absolute"}}>
+                <Backdrop open={open} onClick={() =>{handleBackdrop(); handleConfirmHide(); handleCheckBoxHide(); handleAddHide();}} sx={{zIndex: 100, position: "absolute"}}>
                     <CircularProgress>
 
                     </CircularProgress>
