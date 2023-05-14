@@ -161,6 +161,7 @@ function getAllDiscountDetails(){
 }
 //getAllDiscountDetails
 //console.log(getAllDiscountDetails());
+
 module.exports = {
   Database,
   loginChecker,

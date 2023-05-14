@@ -16,5 +16,29 @@ module.exports = (components) => {
         }});
     });
 
+    router.get('/getUserDetails/:userID', (req, res)=>{
+        res.json({success:true, data:{
+            UserDetails:interface.getUserDetails(req.params.userID)
+        }});
+    })
+
+    router.get('/getAllUserDetails', (req, res)=>{
+        res.json({success:true, data:{
+            UserDetails:interface.getAllUserDetails()
+        }});
+    })
+
+    router.get('/getSingleProductDetails/:productID', (req, res)=>{
+        res.json({success:true, data:{
+            UserDetails:interface.getSingleProductDetails(req.params.productID)
+        }});
+    })
+
+    router.post('/makeUser', (req, res)=>{
+        interface.makeUser(req.body.Fname,req.body.Lname);
+        res.json({success:true})
+    });
+
+    
     return router;
 }
