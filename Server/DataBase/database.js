@@ -1,4 +1,5 @@
 const Database = require("better-sqlite3");
+const { v4: uuidv4 } = require("uuid");
 const fs = require("fs");
 const console = require("console");
 
@@ -103,5 +104,24 @@ class DataBaseSystem {
     const sql = this.database.prepare(`DROP TABLE ${tablename}`);
     sql.run();
   }
+
+  updateRecord(table, field, newValue, checkedField, value) {
+    const sql = this.database.prepare(`
+        UPDATE ${table} SET ${field} = ?
+        WHERE ${checkedField} = ?;`);
+    try {
+      sql.run(newValue, value);
+    } catch (err) {
+      log.error(log.logType.DATABASE, __filename, err);
+      throw "some field error";
+    }
+  }
+
+  generateUUID(table, field) {
+    const uuid = uuidv4();
+    if (this.inTable(table, field, uuid)) return this.generateUUID();
+    return uuid;
+  }
 }
+
  module.exports = { DataBaseSystem };

@@ -10,15 +10,8 @@ export default function StaticDataContextProvider({children}) {
     const [increments, setIncrements] = useState(0);
 
     useEffect(() => {
-        if (!refreshInterval) return;
-        setInterval(() => {
-            setIncrements(increments+1)
-        }, 5000)
-        setRefreshInterval(true);
-    }, [])
-
-    useEffect(() => {
-        (async () => {
+        const interval = setInterval(() =>
+          (async () => {
             try {
                 let response = await axios.get('/api/static_data');
                 let serverResponse = response?.data;
@@ -31,7 +24,9 @@ export default function StaticDataContextProvider({children}) {
                 console.error('Failed getting Static Data', e.stack);
             }
         })()
-    }, [increments]);
+        , 1000);
+        return () => clearInterval(interval);
+    }, [])
 
     // if nothing loaded, return loading title.
     if (!static_data) return <h1 className="static-loading">Loading...</h1>
