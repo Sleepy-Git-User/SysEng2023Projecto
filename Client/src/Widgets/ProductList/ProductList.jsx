@@ -9,11 +9,7 @@ export default function ProductList({}) {
   return (
     <section>
       Here are your products:
-      {GlobalData.static_data.Discounts.map((Discounts,i) => 
-        <div key={i}>
-          {Discounts.DiscountID}, {Discounts.ProductID}, {Discounts.StartDateTime}
-        </div>
-      )}
+      {JSON.stringify(GlobalData.static_data.Products[2].Name)}
     </section>
   )
 }

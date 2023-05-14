@@ -10,9 +10,10 @@ module.exports = (components) => {
     const router = express.Router();
 
     router.get('/static_data', (req, res) => {
-
-        const data = interface.getAllDiscountDetails()
-        res.json({success:true,data:{Discounts:data}});
+        res.json({success:true, data: {
+            Discounts:interface.getAllDiscountDetails(),
+            Products: interface.getAllProductDetails(),
+        }});
     });
 
     return router;

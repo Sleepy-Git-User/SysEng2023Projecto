@@ -133,7 +133,7 @@ function editProductStock(ProductID, Value){
   Database.updateRecord("Products","Stock",Value,"ProductID",ProductID);
 }
 //editProductName etc Test
-//editProductName("34959456","watr bottle");
+editProductName("72645439","Cock bottle");
 
 function makeDiscount(ProductID,Start,End,Amount){
   if(Database.inTable("Discounts","ProductID",ProductID)){
