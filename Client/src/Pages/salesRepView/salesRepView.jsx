@@ -7,7 +7,6 @@ import { Button } from '@mui/material';
 import { Backdrop } from '@mui/material';
 import { CircularProgress } from '@mui/material'
 import { List } from '@mui/material'
-import {Input} from '@mui/material'
 
 export default function Randompage(){
     /* Calculate total */
@@ -30,7 +29,6 @@ export default function Randompage(){
     const handleCheckBoxShow = () => (setHideBox('visible'))
     const handleCheckBoxHide = () => (setHideBox('hidden'))
 
-
     /* Change the visibility of the confirm box */
     const [hiddenConfirm, setConfirmBox] = React.useState('hidden')
     const handleConfirmShow = () => (setConfirmBox('visible'))
@@ -41,10 +39,6 @@ export default function Randompage(){
     const handleAddShow = () => (setAddBox('visible'))
     const handleAddHide = () => (setAddBox('hidden'))
 
-        /* Change the visibility of the add box */
-        const [hiddenDiscount, setDiscountBox] = React.useState('hidden')
-        const handleDiscountShow = () => (setDiscountBox('visible'))
-        const handleDiscountHide = () => (setDiscountBox('hidden'))
 
     return(
         <Container>
