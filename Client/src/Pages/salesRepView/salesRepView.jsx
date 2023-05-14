@@ -13,6 +13,7 @@ export default function Randompage(){
     let zero = 0;
     let runningtotal = zero.toFixed(2);
 
+    /*Price calculator */
     const [total, setTotal] = React.useState(runningtotal)
     const shirtBrought = () => (setTotal((+total + 7.50).toFixed(2)))
     const tshirtBrought = () => (setTotal((+total + 4.50).toFixed(2)))
