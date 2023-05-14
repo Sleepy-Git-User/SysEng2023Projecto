@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS Payments (
   PaymentID VARCHAR NOT NULL UNIQUE PRIMARY KEY,
   SaleID VARCHAR NOT NULL,
   Amount DECIMAL(10, 2) NOT NULL,
-  PaymentType TEXT CHECK(PaymentType IN ('cash', 'credit_card', 'debit_card')) NOT NULL,
+  PaymentType TEXT CHECK(PaymentType IN ('cash', 'card')) NOT NULL,
   FOREIGN KEY (SaleID) REFERENCES Sales(SaleID)
 );
 

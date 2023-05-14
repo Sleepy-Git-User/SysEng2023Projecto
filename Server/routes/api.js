@@ -39,6 +39,10 @@ module.exports = (components) => {
         res.json({success:true})
     });
 
+    router.post('/loginChecker', (req, res)=>{
+        interface.loginChecker(req.body.userID);
+        res.json({success:interface.loginChecker(req.body.userID)})
+    });
     
     return router;
 }
