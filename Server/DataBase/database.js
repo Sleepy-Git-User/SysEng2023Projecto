@@ -105,10 +105,10 @@ class DataBaseSystem {
     sql.run();
   }
 
-  updateRecord(table, field, newValue, checkedFild, value) {
+  updateRecord(table, field, newValue, checkedField, value) {
     const sql = this.database.prepare(`
         UPDATE ${table} SET ${field} = ?
-        WHERE ${checkedFild} = ?;`);
+        WHERE ${checkedField} = ?;`);
     try {
       sql.run(newValue, value);
     } catch (err) {

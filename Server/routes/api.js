@@ -2,21 +2,17 @@
  * Router Setup for API Requests
  * @returns Express Router
  */
+
+const interface = require("../DataBase/interface.js");
+
 module.exports = (components) => {
     const {database, express} = components;
     const router = express.Router();
 
     router.get('/static_data', (req, res) => {
 
-
-        res.json({success: true, data: {
-            products: [
-                {name: 'Nuts', quantity: 10},
-                {name: 'Coke Zero', quantity: 10000},
-                {name: 'Pepsi', quantity: 9},
-                {name: 'Fiseh', quantity: 6.32},
-            ]
-        }});
+        const data = interface.getAllDiscountDetails()
+        res.json({success:true,data:{Discounts:data}});
     });
 
     return router;
