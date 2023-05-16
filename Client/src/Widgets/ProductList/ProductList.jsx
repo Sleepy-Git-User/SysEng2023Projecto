@@ -9,7 +9,7 @@ export default function ProductList({}) {
   return (
     <section>
       Here are your products:
-      {JSON.stringify(GlobalData.static_data.Products.Price)}
+      {JSON.stringify(GlobalData.static_data.Products)}
     </section>
   )
 }
