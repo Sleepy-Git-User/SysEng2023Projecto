@@ -39,10 +39,21 @@ module.exports = (components) => {
         res.json({success:true})
     });
 
-    router.post('/loginChecker', (req, res)=>{
-        interface.loginChecker(req.body.userID);
-        res.json({success:interface.loginChecker(req.body.userID)})
+    router.post('/loginChecker', async (req, res) => {
+        console.log(req.body);
+        try {
+            const { userID } = req?.body;
+            if (!userID) {
+                return res.status(400).json({ success: false, message: 'Missing userID' });
+            }
+            const isValid = await interface.loginChecker(userID);
+            return res.json({ success: isValid });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ success: false, message: 'Server error' });
+        }
     });
+    
     
     return router;
 }

@@ -34,15 +34,12 @@ export default function LoginForm(){
     //prevents page automatically refreshing on submit, will direct user to sales/admin view upon authentication
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try{
-            console.log(user,pass);
-            const resp = await axios.post('/api/loginChecker', {title: "User", body: user});
-            console.log(resp.data);
-            //console.log(post);
-        } catch (error) {
-            console.log(error.response.data);
-        }
-        
+        await axios.post('/api/loginChecker', { userID: user })
+        .then(res=>{
+            console.log(res.data);
+        }).catch(e=>{
+            console.log(e);
+        });
     }
 
     //Login fields for login page, using mui components and sx to style and format further
