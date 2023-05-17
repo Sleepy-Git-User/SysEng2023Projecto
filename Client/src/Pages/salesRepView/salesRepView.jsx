@@ -9,17 +9,65 @@ import { CircularProgress } from '@mui/material'
 import { List } from '@mui/material'
 
 export default function Randompage(){
+        
     /* Calculate total */
     let zero = 0;
     let runningtotal = zero.toFixed(2);
+    
+    /* Price calculator */
+    const [total, setTotal] = React.useState(runningtotal);
+    const [myArray, setMyArray] = useState([]);
+    const [myString, setMyString] = useState('Check'); // Declare myString state variable
+    
+    const shirtBrought = () => {
+        setTotal((+total + 7.50).toFixed(2));
+        setMyString(prevValue => {
+          const newValue = 'Shirt';
+          setMyArray([...myArray, newValue]);
+          console.log(myArray.length);
+          return newValue;
+        });
+      };
+      
+      const tshirtBrought = () => {
+        setTotal((+total + 4.50).toFixed(2));
+        setMyString(prevValue => {
+          const newValue = 'T-Shirt';
+          setMyArray([...myArray, newValue]);
+          console.log(myArray.length);
+          return newValue;
+        });
+      };
+      
+      const socksBrought = () => {
+        setTotal((+total + 2.99).toFixed(2));
+        setMyString(prevValue => {
+          const newValue = 'Socks';
+          setMyArray([...myArray, newValue]);
+          console.log(myArray.length);
+          return newValue;
+        });
+      };
+      
+      const jeansBrought = () => {
+        setTotal((+total + 21.00).toFixed(2));
+        setMyString(prevValue => {
+          const newValue = 'Jeans';
+          setMyArray([...myArray, newValue]);
+          console.log(myArray.length);
+          return newValue;
+        });
+      };
 
-    /*Price calculator */
-    const [total, setTotal] = React.useState(runningtotal)
-    const shirtBrought = () => (setTotal((+total + 7.50).toFixed(2)))
-    const tshirtBrought = () => (setTotal((+total + 4.50).toFixed(2)))
-    const socksBrought = () => (setTotal((+total + 2.99).toFixed(2)))
-    const jeansBrought = () => (setTotal((+total + 21.00).toFixed(2)))
-    const clearTotal = () => (setTotal((+total - +total).toFixed(2)))
+
+      const removeItem = (index) => {
+        setMyArray(prevArray => {
+          const newArray = [...prevArray];
+          newArray.splice(index, 1);
+          return newArray;
+        });
+      };
+
 
     /* Change the open or close state of the backdrop */
     const [open, setOpen] = React.useState(false)
@@ -46,7 +94,7 @@ export default function Randompage(){
             {/* List of buttons */}
             <Button sx={{m:2, top: 65, left: 845, minWidth: 150, minHeight: 75}} variant="contained" onClick={handleBackdrop}>Logout</Button>
             <Button sx={{m:2, top: 970, right: 200, minWidth: 150, minHeight: 75}} variant="contained" onClick={() =>{handleBackdrop(); handleAddShow();}} color="success">Add</Button>
-            <Button sx={{m:2, top: 970, right: 100, minWidth: 150, minHeight: 75}} variant="contained" onClick={handleBackdrop} color="error">Remove</Button>
+            <Button sx={{m:2, top: 970, right: 100, minWidth: 150, minHeight: 75}} variant="contained" onClick={() =>{removeItem();}} color="error">Remove</Button>
             <Button sx={{m:2, top: 970, left: 300, minWidth: 150, minHeight: 75 }} variant="contained" onClick={() =>{handleBackdrop(); handleCheckBoxShow();}} color="warning" >Checkout</Button>
 
             {/* Username of the user will be shown here */}
@@ -61,7 +109,21 @@ export default function Randompage(){
                 color: '#5883a7',
                 bgcolor: "white"}}
             > 
+            
 
+            {/* Display Box */}
+            <Box variant="outlined" sx={{ 
+                zIndex: 0,
+                border: 0 ,
+                width: 1000, 
+                height: 800, 
+                color: '#5883a7',
+                bgcolor: "white"}}
+                >
+                    {myArray.map((item,index) => (<div key={index}>{item}</div>))}
+                </Box>
+
+            <Button />
                 {/* Checkout Box */}
                 <Box visibility={hiddenBox} position={'absolute'} sx={{ 
                     zIndex: 1300,
@@ -81,14 +143,14 @@ export default function Randompage(){
                     zIndex: 1100,
                     border: 5 ,
                     width: 800, 
-                    height: 700, 
+                    height: 700,
                     bgcolor: "white"}} 
                     >
                         <List sx={{maxHeight: 682, overflow: 'auto'}}>
-                        <Button sx={{height: 200, width:775}} varient="outlined" onClick={jeansBrought}>Add Jeans</Button>
-                        <Button sx={{height: 200, width:775}} varient="outlined" onClick={shirtBrought}>Add Shirt</Button>
-                        <Button sx={{height: 200, width:775}} varient="outlined" onClick={tshirtBrought}>Add T-Shirt</Button>
-                        <Button sx={{height: 200, width:775}} varient="outlined" onClick={socksBrought}>Add Socks</Button>
+                        <Button sx={{height: 200, width:775}} varient="outlined" onClick={() => {jeansBrought()}}>Add Jeans</Button>
+                        <Button sx={{height: 200, width:775}} varient="outlined" onClick={() => {shirtBrought()}}>Add Shirt</Button>
+                        <Button sx={{height: 200, width:775}} varient="outlined" onClick={() => {tshirtBrought()}}>Add T-Shirt</Button>
+                        <Button sx={{height: 200, width:775}} varient="outlined" onClick={() => {socksBrought()}}>Add Socks</Button>
                         </List>
                 </Box>
 
