@@ -9,6 +9,7 @@ import React from "react";
 import { useState } from "react";
 import './loginform.css';
 import axios from "axios";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
 
 
@@ -29,14 +30,19 @@ export default function LoginForm(){
     //user and password variables
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
-    const [post, setPost] = useState(null);
+    const navigate = useNavigate();
 
     //prevents page automatically refreshing on submit, will direct user to sales/admin view upon authentication
     const handleSubmit = async (e) => {
         e.preventDefault();
         await axios.post('/api/loginChecker', { userID: user })
         .then(res=>{
-            console.log(res.data);
+            if (res.data.success == true){
+                navigate("/");
+            }
+            else{
+
+            }
         }).catch(e=>{
             console.log(e);
         });
@@ -55,10 +61,10 @@ export default function LoginForm(){
                             <TextField required fullWidth autoComplete="false" label="User ID" value={user}
                              onChange={(e) => setUser(e.target.value)} ></TextField>
                         </Grid>
-                        <Grid xs={12} item sx={{py: 2,}}>
+                        {/*<Grid xs={12} item sx={{py: 2,}}>
                             <TextField required fullWidth autoComplete="false" label="Password" type="password"
                              value={pass} onChange={(e) => setPass(e.target.value)}></TextField>
-                        </Grid>
+    </Grid>*/}
                         <Grid xs={12} item sx={{py: 2,}}>
                             <Button fullWidth variant="contained" size="large"
                             type="submit" style={{minHeight:'6vh'}}>Login</Button>
