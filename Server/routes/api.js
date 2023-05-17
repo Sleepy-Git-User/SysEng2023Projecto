@@ -40,7 +40,6 @@ module.exports = (components) => {
     });
 
     router.post('/loginChecker', async (req, res) => {
-        console.log(req.body);
         try {
             const { userID } = req?.body;
             if (!userID) {
@@ -53,7 +52,6 @@ module.exports = (components) => {
             return res.status(500).json({ success: false, message: 'Server error' });
         }
     });
-    
     
     return router;
 }
