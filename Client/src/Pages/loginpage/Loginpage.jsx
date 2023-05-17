@@ -1,5 +1,5 @@
 import './loginpage.css'
-import LoginForm from '../../Widgets/LoginForm'
+import LoginForm from '../../Widgets/LoginForm/LoginForm'
 
 
 export default function Loginpage(){

@@ -5,6 +5,20 @@ import Randompage from './Pages/randompage/Randompage.jsx';
 import Loginpage from './Pages/randompage/Loginpage.jsx';
 import StaticDataContextProvider from './Contexts/StaticDataContext';
 import {ProductList} from './Widgets/widgets';
+import Loginpage from './Pages/loginpage/Loginpage';
+
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#5883a7',
+    },
+    secondary: {
+      main: '#5883a7',
+    },
+  },
+});
 
 import {red} from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -26,7 +40,7 @@ function App() {
   return (
     <StaticDataContextProvider>
       <ThemeProvider theme={theme}>
-      <BrowserRouter>
+        <BrowserRouter>
           <Routes>
             <Route path="/" element={<Outlet></Outlet>}>
               <Route index element = {<ProductList></ProductList>}></Route>

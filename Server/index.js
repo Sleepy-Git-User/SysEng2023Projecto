@@ -7,12 +7,15 @@ const express = require('express');
 const app = express();
 app.use(express.static(path.resolve(__dirname, "../client/dist"), { index: false }));
 
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true }));
+
 // Server Middleware
 app.use((req, res, next) => {
     const start = +new Date();
     next();
     const time = +new Date() - start;
-    console.log('Request made to', req.path, 'took', `${time}ms`);
+  //  console.log('Request made to', req.path, 'took', `${time}ms`);
 })
 
 // Server Config
