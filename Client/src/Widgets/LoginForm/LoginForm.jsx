@@ -40,22 +40,18 @@ export default function LoginForm(){
         await axios.post('/api/loginChecker', { userID: user })
         .then(res=>{
             if (res.data.success == true){
-                navigate("/");
+                navigate("/narnia");
             }
             else{
-
+                
             }
         }).catch(e=>{
             console.log(e);
         });
     }
 
-    const makeUser = async (e) => {
-        await axios.post('/api/makeUser', {fname: fname, lname: lname})
-        .then(res=>{
-            console.log(res.data);
-        })
-    }
+
+    
 
     //Login fields for login page, using mui components and sx to style and format further
     //Card and grid used to give a professional and clean look
@@ -76,7 +72,7 @@ export default function LoginForm(){
     </Grid>*/}
                         <Grid xs={12} item sx={{py: 2,}}>
                             <Button fullWidth variant="contained" size="large"
-                            type="submit" onClick={makeUser} style={{minHeight:'6vh'}}>Login</Button>
+                            type="submit" style={{minHeight:'6vh'}}>Login</Button>
                         </Grid>
                     </Grid>
                     </form>
