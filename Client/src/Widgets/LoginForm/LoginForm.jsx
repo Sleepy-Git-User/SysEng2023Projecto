@@ -31,6 +31,8 @@ export default function LoginForm(){
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
     const navigate = useNavigate();
+    const [fname, setfname] = useState('dave');
+    const [lname, setlname] = useState('davidson');
 
     //prevents page automatically refreshing on submit, will direct user to sales/admin view upon authentication
     const handleSubmit = async (e) => {
@@ -46,6 +48,13 @@ export default function LoginForm(){
         }).catch(e=>{
             console.log(e);
         });
+    }
+
+    const makeUser = async (e) => {
+        await axios.post('/api/makeUser', {fname: fname, lname: lname})
+        .then(res=>{
+            console.log(res.data);
+        })
     }
 
     //Login fields for login page, using mui components and sx to style and format further
@@ -67,7 +76,7 @@ export default function LoginForm(){
     </Grid>*/}
                         <Grid xs={12} item sx={{py: 2,}}>
                             <Button fullWidth variant="contained" size="large"
-                            type="submit" style={{minHeight:'6vh'}}>Login</Button>
+                            type="submit" onClick={makeUser} style={{minHeight:'6vh'}}>Login</Button>
                         </Grid>
                     </Grid>
                     </form>
