@@ -30,9 +30,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Outlet></Outlet>}>
-              <Route index element = {<ProductList></ProductList>}></Route>
-              <Route path="/fish" element={<Randompage></Randompage>}></Route>
-              <Route path="/login" element={<Loginpage></Loginpage>}></Route>
+              <Route index element = {<Loginpage></Loginpage>}></Route>
             </Route>            
         </Routes>
 			</BrowserRouter>
