@@ -133,7 +133,7 @@ function editProductStock(ProductID, Value){
   Database.updateRecord("Products","Stock",Value,"ProductID",ProductID);
 }
 //editProductName etc Test
-editProductName("72645439","Cock bottle");
+//editProductName("72645439","Lock bottle");
 
 function makeDiscount(ProductID,Start,End,Amount){
   if(Database.inTable("Discounts","ProductID",ProductID)){
@@ -148,7 +148,7 @@ const insertDiscount = Database.database.prepare('INSERT INTO Discounts (Discoun
 insertDiscount.run(discount_id,ProductID,Start,End,Amount);
 }
 //makeDiscount Test
-//makeDiscount("34959456","2023-07-01T23:59:59","2023-06-30T23:59:59",50.00);
+//makeDiscount("57802024","2023-07-01T23:59:59","2023-06-30T23:59:59",50.00);
 
 function deleteDiscount(DiscountID){
   Database.deleteRecord("Discounts","DiscountID",DiscountID)
@@ -161,6 +161,8 @@ function getAllDiscountDetails(){
 }
 //getAllDiscountDetails
 //console.log(getAllDiscountDetails());
+
+
 
 module.exports = {
   Database,
