@@ -112,7 +112,7 @@ function getAllProductDetails(){
 }
 
 //getAllProductDetails Test
-console.log(getAllProductDetails());
+//console.log(getAllProductDetails());
 
 function getSingleProductDetails(ProductID){
   return Database.getRecord("Products","ProductID",ProductID)
