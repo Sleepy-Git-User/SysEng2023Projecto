@@ -7,20 +7,26 @@ import { Button } from '@mui/material';
 import { Backdrop } from '@mui/material';
 import { CircularProgress } from '@mui/material'
 import { List } from '@mui/material'
+import { TextField } from "@mui/material"
 
 export default function Randompage(){
         
     /* Calculate total */
     let zero = 0;
+    let itemPricing = zero.toFixed(2);
     let runningtotal = zero.toFixed(2);
     
     /* Price calculator */
     const [total, setTotal] = React.useState(runningtotal);
     const [myArray, setMyArray] = useState([]);
+    const [removeValue, setRemoveValue] = useState('');
+    const [itemPrice, setItemPrice] = useState(itemPricing);
+    const [indexValue, setIndexValue] = useState('');
     const [myString, setMyString] = useState('Check'); // Declare myString state variable
     
     const shirtBrought = () => {
-        setTotal((+total + 7.50).toFixed(2));
+        const shirtPrice = 7.50;
+        setTotal((+total + shirtPrice).toFixed(2));
         setMyString(prevValue => {
           const newValue = 'Shirt';
           setMyArray([...myArray, newValue]);
@@ -30,7 +36,8 @@ export default function Randompage(){
       };
       
       const tshirtBrought = () => {
-        setTotal((+total + 4.50).toFixed(2));
+        const tshirtPrice = 4.50;
+        setTotal((+total + tshirtPrice).toFixed(2));
         setMyString(prevValue => {
           const newValue = 'T-Shirt';
           setMyArray([...myArray, newValue]);
@@ -40,7 +47,8 @@ export default function Randompage(){
       };
       
       const socksBrought = () => {
-        setTotal((+total + 2.99).toFixed(2));
+        const SockPrice = 2.99;
+        setTotal((+total + SockPrice).toFixed(2));
         setMyString(prevValue => {
           const newValue = 'Socks';
           setMyArray([...myArray, newValue]);
@@ -50,7 +58,8 @@ export default function Randompage(){
       };
       
       const jeansBrought = () => {
-        setTotal((+total + 21.00).toFixed(2));
+        const JeanPrice = 21.00;
+        setTotal((+total + JeanPrice).toFixed(2));
         setMyString(prevValue => {
           const newValue = 'Jeans';
           setMyArray([...myArray, newValue]);
@@ -60,16 +69,40 @@ export default function Randompage(){
       };
 
 
-      const removeItem = (index) => {
+      const removeItem = () => {
         setMyArray(prevArray => {
+          const removeItem = prevArray[removeValue-1];
+          let updatedItemPrice = itemPrice;
+          if (removeItem === "Jeans") {
+            updatedItemPrice = 21.00;
+          } else if (removeItem === "Shirt") {
+            updatedItemPrice = 7.50;
+          } else if (removeItem === "T-Shirt") {
+            updatedItemPrice = 4.50;
+          } else if (removeItem === "Socks") {
+            updatedItemPrice = 2.99;
+          }
+          console.log(removeItem);
+          console.log(updatedItemPrice);
+          setItemPrice(() => updatedItemPrice);
+      
+          setTotal(prevTotal => (+prevTotal - updatedItemPrice).toFixed(2));
+      
           const newArray = [...prevArray];
-          newArray.splice(index, 1);
+          newArray.splice(removeValue-1, 1);
           return newArray;
         });
       };
 
+      const removeAdd = e => {
+        console.log(e.target.value);
+        setRemoveValue(e.target.value);
+      }
+
       const clearTotal = () => {
         (setTotal((+total - +total).toFixed(2)));
+        setItemPrice(itemPricing);
+        setRemoveValue('');
         setMyArray([]);
         }
 
@@ -88,6 +121,11 @@ export default function Randompage(){
     const handleConfirmShow = () => (setConfirmBox('visible'))
     const handleConfirmHide = () => (setConfirmBox('hidden'))
 
+    /* Change the visibility of the confirm box */
+    const [hiddenRemove, setRemoveBox] = React.useState('hidden')
+    const handleRemoveShow = () => (setRemoveBox('visible'))
+    const handleRemoveHide = () => (setRemoveBox('hidden'))
+
     /* Change the visibility of the add box */
     const [hiddenAdd, setAddBox] = React.useState('hidden')
     const handleAddShow = () => (setAddBox('visible'))
@@ -99,7 +137,7 @@ export default function Randompage(){
             {/* List of buttons */}
             <Button sx={{m:2, top: 65, left: 845, minWidth: 150, minHeight: 75}} variant="contained" onClick={handleBackdrop}>Logout</Button>
             <Button sx={{m:2, top: 970, right: 200, minWidth: 150, minHeight: 75}} variant="contained" onClick={() =>{handleBackdrop(); handleAddShow();}} color="success">Add</Button>
-            <Button sx={{m:2, top: 970, right: 100, minWidth: 150, minHeight: 75}} variant="contained" onClick={() =>{removeItem();}} color="error">Remove</Button>
+            <Button sx={{m:2, top: 970, right: 100, minWidth: 150, minHeight: 75}} variant="contained" onClick={() =>{handleRemoveShow(); handleBackdrop();}} color="error">Remove</Button>
             <Button sx={{m:2, top: 970, left: 300, minWidth: 150, minHeight: 75 }} variant="contained" onClick={() =>{handleBackdrop(); handleCheckBoxShow();}} color="warning" >Checkout</Button>
 
             {/* Username of the user will be shown here */}
@@ -116,7 +154,7 @@ export default function Randompage(){
             > 
             
 
-            {/* Display Box */}
+            {/* Cart Box */}
             <Box variant="outlined" sx={{ 
                 zIndex: 0,
                 border: 0 ,
@@ -171,6 +209,18 @@ export default function Randompage(){
                     
                 </Box>
 
+                  {/* Removal Box */}
+                  <Box visibility={hiddenRemove} position={'absolute'} display="flex" justifyContent="center" alignItems="center" variant="outlined" sx={{ 
+                    zIndex: 1200,
+                    border: 5 ,
+                    width: 600, 
+                    height: 200, 
+                    bgcolor: "white"}} 
+                    >
+                    <TextField value={removeValue} variant="outlined" onChange={removeAdd}></TextField>
+                    <Button sx={{minWidth: 50, minHeight: 50}} variant="contained" onClick={() =>{removeItem(); handleBackdrop(); handleRemoveHide();}} color="error">Remove</Button>
+                </Box>
+
 
                 {/* Price */}
                 <Box position={'absolute'} display="flex" justifyContent="right" alignItems="right" variant="outlined" sx={{ 
@@ -186,7 +236,7 @@ export default function Randompage(){
             </Box>
 
                 {/* Backdrop that shows loading when a button is pressed. */}
-                <Backdrop open={open} onClick={() =>{handleBackdrop(); handleConfirmHide(); handleCheckBoxHide(); handleAddHide();}} sx={{zIndex: 100, position: "absolute"}}>
+                <Backdrop open={open} onClick={() =>{handleBackdrop(); handleConfirmHide(); handleCheckBoxHide(); handleAddHide(); handleRemoveHide();}} sx={{zIndex: 100, position: "absolute"}}>
                     <CircularProgress>
 
                     </CircularProgress>
