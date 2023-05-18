@@ -1,0 +1,28 @@
+Name,Description,Price,Stock,Category
+Bananas,Fresh Bananas,0.59,200,Fruits
+Apples,Red Delicious Apples,0.79,150,Fruits
+Oranges,Sweet Oranges,0.89,180,Fruits
+Spinach,Fresh Spinach,1.99,75,Vegetables
+Carrots,Organic Carrots,1.49,80,Vegetables
+Potatoes,Russet Potatoes,0.69,100,Vegetables
+Milk,2% Milk,2.99,50,Dairy
+Eggs,Large Brown Eggs,2.79,60,Dairy
+Butter,Unsalted Butter,3.99,40,Dairy
+Baguette,Fresh Baguette,1.99,100,Bakery
+Croissant,Flaky Croissant,2.49,80,Bakery
+Bagels,Plain Bagels,2.99,90,Bakery
+Chicken Breast,Boneless Chicken Breast,4.99,30,Meat
+Ground Beef,80% Lean Ground Beef,3.99,35,Meat
+Pork Chops,Bone-in Pork Chops,5.99,25,Meat
+Salmon Filet,Fresh Salmon Filet,8.99,20,Seafood
+Shrimp,Large Shrimp,9.99,15,Seafood
+Cod Filet,Fresh Cod Filet,7.99,25,Seafood
+Frozen Pizza,Pepperoni Frozen Pizza,5.99,40,Frozen Foods
+Ice Cream,Vanilla Ice Cream,4.99,30,Frozen Foods
+Frozen Vegetables,Mixed Frozen Vegetables,2.99,50,Frozen Foods
+Cola,2L Cola Bottle,1.99,60,Beverages
+Orange Juice,1L Orange Juice,3.99,40,Beverages
+Mineral Water,500ml Mineral Water,0.99,100,Beverages
+Potato Chips,Salty Potato Chips,2.49,80,Snacks
+Pretzels,Crunchy Pretzels,1.99,70,Snacks
+Popcorn,Butter Popcorn,3.49,60,Snacks

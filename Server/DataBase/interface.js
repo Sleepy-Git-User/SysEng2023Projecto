@@ -84,14 +84,14 @@ function genID(table, value){
   return product_id;
 }
 
-function addProduct(name,description,price,stock){
+function addProduct(name,description,price,stock,category){
   if(Database.inTable("Products","Name",name.toUpperCase())) return false;
   let product_id = generateUniqueCode();
   while(Database.inTable("Products","ProductID",product_id)){
     product_id=generateUniqueCode()
   }
-  const insertProduct = Database.database.prepare('INSERT INTO Products (ProductID, Name, Description, Price, Stock) VALUES (?,?,?,?,?)');
-  insertProduct.run(product_id,name.toUpperCase(),description,price,stock);
+  const insertProduct = Database.database.prepare('INSERT INTO Products (ProductID, Name, Description, Price, Stock, Category) VALUES (?,?,?,?,?,?)');
+  insertProduct.run(product_id,name.toUpperCase(),description,price,stock,category);
   return true;
 }
 
