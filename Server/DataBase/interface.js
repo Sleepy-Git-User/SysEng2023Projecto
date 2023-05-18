@@ -84,14 +84,14 @@ function genID(table, value){
   return product_id;
 }
 
-function addProduct(name,description,price,stock){
+function addProduct(name,description,price,stock,category){
   if(Database.inTable("Products","Name",name.toUpperCase())) return false;
   let product_id = generateUniqueCode();
   while(Database.inTable("Products","ProductID",product_id)){
     product_id=generateUniqueCode()
   }
-  const insertProduct = Database.database.prepare('INSERT INTO Products (ProductID, Name, Description, Price, Stock) VALUES (?,?,?,?,?)');
-  insertProduct.run(product_id,name.toUpperCase(),description,price,stock);
+  const insertProduct = Database.database.prepare('INSERT INTO Products (ProductID, Name, Description, Price, Stock, Category) VALUES (?,?,?,?,?,?)');
+  insertProduct.run(product_id,name.toUpperCase(),description,price,stock,category);
   return true;
 }
 
@@ -107,11 +107,12 @@ function removeProduct(ProductID){
 //removeProduct("9039461");
 
 function getAllProductDetails(){
-  return Database.getAllRecords("Products")
+  const sql = Database.database.prepare(`SELECT Products.*, IFNULL(ROUND(Products.Price*Discounts.Amount,2),Products.Price) DiscountPrice FROM Products LEFT JOIN Discounts ON Discounts.ProductID = Products.ProductID AND Discounts.StartDateTime < DATE('now') AND Discounts.EndDateTime > DATE('now')`);
+  return sql.all();
 }
 
 //getAllProductDetails Test
-//console.log(getAllProductDetails());
+console.log(getAllProductDetails());
 
 function getSingleProductDetails(ProductID){
   return Database.getRecord("Products","ProductID",ProductID)
@@ -156,7 +157,7 @@ const insertDiscount = Database.database.prepare('INSERT INTO Discounts (Discoun
 insertDiscount.run(discount_id,ProductID,Start,End,Amount);
 }
 //makeDiscount Test
-//makeDiscount("57802024","2023-07-01T23:59:59","2023-06-30T23:59:59",50.00);
+//makeDiscount("74739724","2023-05-01T23:59:59","2023-06-30T23:59:59","0.5");
 
 function deleteDiscount(DiscountID){
   Database.deleteRecord("Discounts","DiscountID",DiscountID)
@@ -172,7 +173,7 @@ function getAllDiscountDetails(){
 
 function newSale(salesData){
   // Add to sales:
-  const SaleID = Database.genID("Sales", "SaleID");
+  const SaleID = genID("Sales", "SaleID");
   const sql = Database.database.prepare(`INSERT INTO Sales VALUES(?,?,?)`);
   sql.run(SaleID,salesData.DateTime, salesData.total);
 
@@ -182,13 +183,13 @@ function newSale(salesData){
   });
 
   function insertSale(sale){
-    const SalesItemID = Database.genID("SaleItems", "SaleItemID");
+    const SalesItemID =genID("SaleItems", "SaleItemID");
     const sql = Database.database.prepare(`INSERT INTO SaleItems VALUES(?,?,?,?,?)`);
     sql.run(SalesItemID, SaleID, sale.productID, sale.quantity, sale.price)
   }
 
   // Payments:
-  const PaymentID = Database.genID("Payments","PaymentID");
+  const PaymentID = genID("Payments","PaymentID");
   const sql2 = Database.database.prepare(`INSERT INTO Payments VALUES(?,?,?,?)`);
   sql2.run(PaymentID, SaleID, salesData.total, salesData.payType)
 
