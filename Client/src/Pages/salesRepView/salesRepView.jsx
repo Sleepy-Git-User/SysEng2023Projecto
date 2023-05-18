@@ -8,6 +8,7 @@ import { Backdrop } from '@mui/material';
 import { CircularProgress } from '@mui/material'
 import { List } from '@mui/material'
 import { TextField } from "@mui/material"
+import { useNavigate } from 'react-router-dom';
 
 export default function Randompage(){
         
@@ -19,9 +20,9 @@ export default function Randompage(){
     /* Price calculator */
     const [total, setTotal] = React.useState(runningtotal);
     const [myArray, setMyArray] = useState([]);
+    const navigate = useNavigate();
     const [removeValue, setRemoveValue] = useState('');
     const [itemPrice, setItemPrice] = useState(itemPricing);
-    const [indexValue, setIndexValue] = useState('');
     const [myString, setMyString] = useState('Check'); // Declare myString state variable
     
     const shirtBrought = () => {
@@ -68,6 +69,10 @@ export default function Randompage(){
         });
       };
 
+      const logout = () => {
+        console.log("logout");
+        navigate('/');
+      }
 
       const removeItem = () => {
         setMyArray(prevArray => {
@@ -135,7 +140,7 @@ export default function Randompage(){
     return(
         <Container>
             {/* List of buttons */}
-            <Button sx={{m:2, top: 65, left: 845, minWidth: 150, minHeight: 75}} variant="contained" onClick={handleBackdrop}>Logout</Button>
+            <Button sx={{m:2, top: 65, left: 845, minWidth: 150, minHeight: 75}} variant="contained" onClick={() =>{handleBackdrop(); logout();}}>Logout</Button>
             <Button sx={{m:2, top: 970, right: 200, minWidth: 150, minHeight: 75}} variant="contained" onClick={() =>{handleBackdrop(); handleAddShow();}} color="success">Add</Button>
             <Button sx={{m:2, top: 970, right: 100, minWidth: 150, minHeight: 75}} variant="contained" onClick={() =>{handleRemoveShow(); handleBackdrop();}} color="error">Remove</Button>
             <Button sx={{m:2, top: 970, left: 300, minWidth: 150, minHeight: 75 }} variant="contained" onClick={() =>{handleBackdrop(); handleCheckBoxShow();}} color="warning" >Checkout</Button>
