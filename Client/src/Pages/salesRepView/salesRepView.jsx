@@ -68,6 +68,11 @@ export default function Randompage(){
         });
       };
 
+      const clearTotal = () => {
+        (setTotal((+total - +total).toFixed(2)));
+        setMyArray([]);
+        }
+
 
     /* Change the open or close state of the backdrop */
     const [open, setOpen] = React.useState(false)
