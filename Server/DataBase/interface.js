@@ -112,7 +112,7 @@ function getAllProductDetails(){
 }
 
 //getAllProductDetails Test
-console.log(getAllProductDetails());
+//console.log(getAllProductDetails());
 
 function getSingleProductDetails(ProductID){
   return Database.getRecord("Products","ProductID",ProductID)
@@ -157,7 +157,7 @@ const insertDiscount = Database.database.prepare('INSERT INTO Discounts (Discoun
 insertDiscount.run(discount_id,ProductID,Start,End,Amount);
 }
 //makeDiscount Test
-//makeDiscount("74739724","2023-05-01T23:59:59","2023-06-30T23:59:59","0.5");
+makeDiscount("81204913","2023-05-01T23:59:59","2023-06-30T23:59:59","0.5");
 
 function deleteDiscount(DiscountID){
   Database.deleteRecord("Discounts","DiscountID",DiscountID)
