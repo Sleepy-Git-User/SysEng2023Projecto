@@ -113,5 +113,10 @@ module.exports = (components) => {
         res.json({success:true})
     });
 
+    router.post('/newSale', (req, res)=>{
+        interface.newSale(req.body);
+        res.json({success:true})
+    });
+
     return router;
 }

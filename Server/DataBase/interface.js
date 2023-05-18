@@ -76,6 +76,14 @@ function getAllUserDetails(){
 //getAllUserDetails Test
 //console.log(getAllUserDetails());
 
+function genID(table, value){
+  let product_id = generateUniqueCode();
+  while(Database.inTable(table,value,product_id)){
+    product_id=generateUniqueCode()
+  }
+  return product_id;
+}
+
 function addProduct(name,description,price,stock){
   if(Database.inTable("Products","Name",name.toUpperCase())) return false;
   let product_id = generateUniqueCode();
@@ -162,6 +170,30 @@ function getAllDiscountDetails(){
 //getAllDiscountDetails
 //console.log(getAllDiscountDetails());
 
+function newSale(salesData){
+  // Add to sales:
+  const SaleID = Database.genID("Sales", "SaleID");
+  const sql = Database.database.prepare(`INSERT INTO Sales VALUES(?,?,?)`);
+  sql.run(SaleID,salesData.DateTime, salesData.total);
+
+  // Sales Items:
+  salesData.sales.forEach(sale => {
+    insertSale(sale);
+  });
+
+  function insertSale(sale){
+    const SalesItemID = Database.genID("SaleItems", "SaleItemID");
+    const sql = Database.database.prepare(`INSERT INTO SaleItems VALUES(?,?,?,?,?)`);
+    sql.run(SalesItemID, SaleID, sale.productID, sale.quantity, sale.price)
+  }
+
+  // Payments:
+  const PaymentID = Database.genID("Payments","PaymentID");
+  const sql2 = Database.database.prepare(`INSERT INTO Payments VALUES(?,?,?,?)`);
+  sql2.run(PaymentID, SaleID, salesData.total, salesData.payType)
+
+}
+
 
 
 module.exports = {
@@ -185,5 +217,6 @@ module.exports = {
   editProductStock,
   deleteDiscount,
   makeDiscount,
-  getAllDiscountDetails
+  getAllDiscountDetails,
+  newSale
 };
