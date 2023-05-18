@@ -38,7 +38,7 @@ export default function LoginForm(){
         await axios.post('/api/loginChecker', { userID: user })
         .then(res=>{
             if (res.data.success == true){
-                navigate("/");
+                navigate("/salesRepView");
             }
             else{
 

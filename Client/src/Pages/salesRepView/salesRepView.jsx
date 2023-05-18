@@ -1,5 +1,6 @@
 import './salesRepView.css'
 import React, { useState } from 'react';
+import { useContext } from 'react';
 import { Container } from '@mui/material';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/material';
@@ -9,8 +10,14 @@ import { CircularProgress } from '@mui/material'
 import { List } from '@mui/material'
 import { TextField } from "@mui/material"
 import { useNavigate } from 'react-router-dom';
+import { StaticDataContext } from '../../Contexts/StaticDataContext'
+import axios from 'axios';
+
 
 export default function Randompage(){
+
+  const GlobalData = useContext(StaticDataContext);
+  const arrayOfProducts = GlobalData.static_data.Products
         
     /* Calculate total */
     let zero = 0;
@@ -24,53 +31,29 @@ export default function Randompage(){
     const [removeValue, setRemoveValue] = useState('');
     const [itemPrice, setItemPrice] = useState(itemPricing);
     const [myString, setMyString] = useState('Check'); // Declare myString state variable
-    
-    const shirtBrought = () => {
-        const shirtPrice = 7.50;
-        setTotal((+total + shirtPrice).toFixed(2));
+
+    const ButtonArray = () => {
+      return (
+        <div>
+          {arrayOfProducts.map((product, index) => (
+            <Button key={index} onClick={() => handleAddItem(product.Name, product.Price)} sx={{height: 200, width:800}}>ADD {product.Name}</Button>
+          ))}
+        </div>
+      );
+    };
+
+    const handleAddItem = (Name, Price) =>{
+        const price = Price;
+        setTotal((+total + price).toFixed(2));
         setMyString(prevValue => {
-          const newValue = 'Shirt';
+          const newValue = Name;
           setMyArray([...myArray, newValue]);
           console.log(myArray.length);
           return newValue;
         });
-      };
-      
-      const tshirtBrought = () => {
-        const tshirtPrice = 4.50;
-        setTotal((+total + tshirtPrice).toFixed(2));
-        setMyString(prevValue => {
-          const newValue = 'T-Shirt';
-          setMyArray([...myArray, newValue]);
-          console.log(myArray.length);
-          return newValue;
-        });
-      };
-      
-      const socksBrought = () => {
-        const SockPrice = 2.99;
-        setTotal((+total + SockPrice).toFixed(2));
-        setMyString(prevValue => {
-          const newValue = 'Socks';
-          setMyArray([...myArray, newValue]);
-          console.log(myArray.length);
-          return newValue;
-        });
-      };
-      
-      const jeansBrought = () => {
-        const JeanPrice = 21.00;
-        setTotal((+total + JeanPrice).toFixed(2));
-        setMyString(prevValue => {
-          const newValue = 'Jeans';
-          setMyArray([...myArray, newValue]);
-          console.log(myArray.length);
-          return newValue;
-        });
-      };
+    }
 
       const logout = () => {
-        console.log("logout");
         navigate('/');
       }
 
@@ -141,7 +124,7 @@ export default function Randompage(){
         <Container>
             {/* List of buttons */}
             <Button sx={{m:2, top: 65, left: 845, minWidth: 150, minHeight: 75}} variant="contained" onClick={() =>{handleBackdrop(); logout();}}>Logout</Button>
-            <Button sx={{m:2, top: 970, right: 200, minWidth: 150, minHeight: 75}} variant="contained" onClick={() =>{handleBackdrop(); handleAddShow();}} color="success">Add</Button>
+            <Button sx={{m:2, top: 970, right: 200, minWidth: 150, minHeight: 75}} variant="contained" onClick={() =>{handleBackdrop(); handleAddShow(); ButtonArray();}} color="success">Add</Button>
             <Button sx={{m:2, top: 970, right: 100, minWidth: 150, minHeight: 75}} variant="contained" onClick={() =>{handleRemoveShow(); handleBackdrop();}} color="error">Remove</Button>
             <Button sx={{m:2, top: 970, left: 300, minWidth: 150, minHeight: 75 }} variant="contained" onClick={() =>{handleBackdrop(); handleCheckBoxShow();}} color="warning" >Checkout</Button>
 
@@ -157,7 +140,6 @@ export default function Randompage(){
                 color: '#5883a7',
                 bgcolor: "white"}}
             > 
-            
 
             {/* Cart Box */}
             <Box variant="outlined" sx={{ 
@@ -195,10 +177,7 @@ export default function Randompage(){
                     bgcolor: "white"}} 
                     >
                         <List sx={{maxHeight: 682, overflow: 'auto'}}>
-                        <Button sx={{height: 200, width:775}} varient="outlined" onClick={() => {jeansBrought()}}>Add Jeans</Button>
-                        <Button sx={{height: 200, width:775}} varient="outlined" onClick={() => {shirtBrought()}}>Add Shirt</Button>
-                        <Button sx={{height: 200, width:775}} varient="outlined" onClick={() => {tshirtBrought()}}>Add T-Shirt</Button>
-                        <Button sx={{height: 200, width:775}} varient="outlined" onClick={() => {socksBrought()}}>Add Socks</Button>
+                        <ButtonArray></ButtonArray>
                         </List>
                 </Box>
 
