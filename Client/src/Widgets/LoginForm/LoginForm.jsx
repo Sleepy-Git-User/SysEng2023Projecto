@@ -13,8 +13,6 @@ import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { StaticDataContext } from '../../Contexts/StaticDataContext'
 import { useContext } from "react";
 
-
-
 export default function LoginForm(){
     const GlobalData = useContext(StaticDataContext);
     /*function postUser() {
@@ -41,7 +39,7 @@ export default function LoginForm(){
         .then(res=>{
             if (res.data.success == true){
                 GlobalData.storeUserID(user)
-                navigate("/salesRepView");
+                navigate("/");
             }
             else{
 
