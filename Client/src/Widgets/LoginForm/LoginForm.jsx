@@ -11,6 +11,7 @@ import './loginform.css';
 import axios from "axios";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { StaticDataContext } from "../../Contexts/StaticDataContext";
+import LoginError from "./LoginError";
 
 
 export default function LoginForm(){
@@ -30,6 +31,7 @@ export default function LoginForm(){
     //user and password variables
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
+    const [showLoginError, setShowLoginError] = useState(false);
     const navigate = useNavigate();
     const GlobalData = useContext(StaticDataContext);
 
@@ -43,7 +45,7 @@ export default function LoginForm(){
                 navigate("/salesRepView");
             }
             else{
-
+                setShowLoginError(true);
             }
         }).catch(e=>{
             console.log(e);
@@ -74,6 +76,7 @@ export default function LoginForm(){
                     </Grid>
                     </form>
                 </CardContent>
+                <LoginError trigger={showLoginError} setTrigger={setShowLoginError}></LoginError>
             </Card>
         </Container>
     )
