@@ -1,7 +1,5 @@
 // JS Imports
 const path = require('path');
-const interface = require("./DataBase/interface");
-const database = interface.Database;
 // Express Imports
 const express = require('express');
 const app = express();
