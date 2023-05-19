@@ -74,7 +74,7 @@ module.exports = (components) => {
     });
 
     router.post('/addProduct', (req, res)=>{
-        interface.addProduct(req.body.name,req.body.description,req.body.price,req.body.stock);
+        interface.addProduct(req.body.name,req.body.description,req.body.price,req.body.stock,req.body.category);
         res.json({success:true})
     });
 
