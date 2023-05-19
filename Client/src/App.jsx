@@ -35,7 +35,7 @@ function App() {
             <Route path="/" element={<Outlet></Outlet>}>
               <Route index element = {<Loginpage></Loginpage>}></Route>
               <Route path="/salesRepView" element={<SalesPage></SalesPage>}></Route>
-              <Route path='/adminPage' element={<Adminpage></Adminpage>}></Route>
+              <Route path='/adminView' element={<Adminpage></Adminpage>}></Route>
             </Route>            
         </Routes>
 			</BrowserRouter>

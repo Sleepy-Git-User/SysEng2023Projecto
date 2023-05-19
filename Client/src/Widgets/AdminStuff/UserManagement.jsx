@@ -4,6 +4,9 @@ import axios from 'axios';
 import './usermanagement.css';
 import AddUser from "./AddUser";
 import RemoveUser from "./RemoveUser";
+import EditUserFName from "./EditUserFName";
+import EditUserLName from "./EditUserLName";
+import ToggleUserAdmin from "./ToggleUserAdmin";
 
 
 export default function UserManagement() {
@@ -12,6 +15,9 @@ export default function UserManagement() {
     const [loading, setLoading] = useState(true);
     const [showUserForm, setShowUserForm] = useState(false);
     const [showRemoveForm, setShowRemoveForm] = useState(false);
+    const [showFNameEditForm, setShowFNameEditForm] = useState(false);
+    const [showLNameEditForm, setShowLNameEditForm] = useState(false);
+    const [showToggleAdminForm, setShowToggleAdminForm] = useState(false);
     
 
     useEffect(() => {
@@ -69,15 +75,21 @@ export default function UserManagement() {
                             )
                         )}
                     </div>
-                    <Container>
+                    <Container sx={{justifyContent: 'center', marginLeft:'18.5vw'}}>
                         <Button onClick={()=> setShowUserForm(true)} variant="contained" sx={{marginRight: "2vw"}}>Add User</Button>
                         <Button onClick={()=> setShowRemoveForm(true)} variant="contained" sx={{marginRight: "2vw"}} >Remove User</Button>
+                        <Button onClick={()=> setShowFNameEditForm(true)} variant="contained" sx={{marginRight: "2vw"}}>Edit FName</Button>
+                        <Button onClick={()=> setShowLNameEditForm(true)} variant="contained" sx={{marginRight: "2vw"}}>Edit LName</Button>
+                        <Button onClick={()=> setShowToggleAdminForm(true)} variant="contained" sx={{marginRight: "2vw"}}>Toggle Admin</Button>
                     </Container>
+                    <AddUser className="addUser" trigger={showUserForm} setTrigger={setShowUserForm}></AddUser>
+                    <RemoveUser className="addUser" trigger={showRemoveForm} setTrigger={setShowRemoveForm}></RemoveUser>
+                    <EditUserFName className="addUser" trigger={showFNameEditForm} setTrigger={setShowFNameEditForm}></EditUserFName>
+                    <EditUserLName className="addUser" trigger={showLNameEditForm} setTrigger={setShowLNameEditForm} ></EditUserLName>
+                    <ToggleUserAdmin className="addUser" trigger={showToggleAdminForm} setTrigger={setShowToggleAdminForm}></ToggleUserAdmin>
                  </CardContent>
             </Card>
-            <AddUser className="addUser" trigger={showUserForm} setTrigger={setShowUserForm}></AddUser>
-            <RemoveUser className="addUser" trigger={showRemoveForm} setTrigger={setShowRemoveForm}></RemoveUser>
-
+            
         </section>
     )
 }

@@ -4,7 +4,10 @@ import axios from 'axios';
 import './productmanagement.css';
 import AddProduct from "./AddProduct";
 import RemoveProduct from "./RemoveProduct";
-
+import EditProductName from "./EditProductName";
+import EditProductDescription from "./EditProductDescription";
+import EditProductPrice from "./EditProductPrice";
+import EditProductStock from "./EditProductStock";
 
 
 
@@ -14,7 +17,10 @@ export default function ProductManagement() {
     const [loading, setLoading] = useState(true);
     const [showProductForm, setShowProductForm] = useState(false);
     const [showRemoveForm, setShowRemoveForm] = useState(false);
-    
+    const [showEditNameForm, setShowEditNameForm] = useState(false);
+    const [showEditDescForm, setShowEditDescForm] = useState(false);
+    const [showEditPriceForm, setShowEditPriceForm] = useState(false);
+    const [showEditStockForm, setShowEditStockForm] = useState(false);
 
     useEffect(() => {
         axios.get('/api/static_data')
@@ -73,12 +79,20 @@ export default function ProductManagement() {
                             )
                         )}
                     </div>
-                    <Container>
+                    <Container sx={{justifyContent: 'center', marginLeft:'10vw'}}>
                         <Button onClick={()=> setShowProductForm(true)} variant="contained" sx={{marginRight: "2vw"}}>Add Product</Button>
                         <Button onClick={()=> setShowRemoveForm(true)} variant="contained" sx={{marginRight: "2vw"}} >Remove Product</Button>
+                        <Button onClick={()=> setShowEditForm(true)} variant="contained" sx={{marginRight: "2vw"}}>Edit Name</Button>
+                        <Button onClick={()=> setShowEditDescForm(true)} variant="contained" sx={{marginRight: "2vw"}}>Edit Description</Button>
+                        <Button onClick={()=> setShowEditPriceForm(true)} variant="contained" sx={{marginRight: "2vw"}} >Edit Price </Button>
+                        <Button onClick={()=> setShowEditStockForm(true)} variant="contained" sx={{marginRight: "2vw"}} >Edit Stock </Button>
                     </Container>
                     <AddProduct className="addUser" trigger={showProductForm} setTrigger={setShowProductForm}></AddProduct>
-               <RemoveProduct className="addUser" trigger={showRemoveForm} setTrigger={setShowRemoveForm}></RemoveProduct>
+                    <RemoveProduct className="addUser" trigger={showRemoveForm} setTrigger={setShowRemoveForm}></RemoveProduct>
+                    <EditProductName className="addUser" trigger={showEditNameForm} setTrigger={setShowEditNameForm}></EditProductName>
+                    <EditProductDescription className="addUser" trigger={showEditDescForm} setTrigger={setShowEditDescForm}></EditProductDescription>
+                    <EditProductPrice className="addUser" trigger={showEditPriceForm} setTrigger={setShowEditPriceForm}></EditProductPrice>
+                    <EditProductStock className="addUser" trigger={showEditStockForm} setTrigger={setShowEditStockForm}></EditProductStock>
                  </CardContent>
             </Card>
         </section>
