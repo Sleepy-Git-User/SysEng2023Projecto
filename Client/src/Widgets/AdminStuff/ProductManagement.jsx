@@ -82,7 +82,7 @@ export default function ProductManagement() {
                     <Container sx={{justifyContent: 'center', marginLeft:'10vw'}}>
                         <Button onClick={()=> setShowProductForm(true)} variant="contained" sx={{marginRight: "2vw"}}>Add Product</Button>
                         <Button onClick={()=> setShowRemoveForm(true)} variant="contained" sx={{marginRight: "2vw"}} >Remove Product</Button>
-                        <Button onClick={()=> setShowEditForm(true)} variant="contained" sx={{marginRight: "2vw"}}>Edit Name</Button>
+                        <Button onClick={()=> setShowEditNameForm(true)} variant="contained" sx={{marginRight: "2vw"}}>Edit Name</Button>
                         <Button onClick={()=> setShowEditDescForm(true)} variant="contained" sx={{marginRight: "2vw"}}>Edit Description</Button>
                         <Button onClick={()=> setShowEditPriceForm(true)} variant="contained" sx={{marginRight: "2vw"}} >Edit Price </Button>
                         <Button onClick={()=> setShowEditStockForm(true)} variant="contained" sx={{marginRight: "2vw"}} >Edit Stock </Button>
