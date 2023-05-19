@@ -15,7 +15,7 @@ export default function StaticDataContextProvider({children}) {
     }
 
 
-    const [userID, setUserID] = useState(null);
+   
 
     function storeUserID(userID){
         setUserID(userID);

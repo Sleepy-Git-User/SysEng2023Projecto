@@ -10,10 +10,11 @@ export default function AddProduct(props){
     const [pDescription, setPDescription] = useState('');
     const [pPrice, setPPrice] = useState(0.00);
     const [pStock, setPStock] = useState(0);
+    const [pCategory,setPCategory] = useState('');
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('/api/addProduct', {name: pName,description: pDescription,price: pPrice,stock: pStock })
+        await axios.post('/api/addProduct', {name: pName,description: pDescription,price: pPrice,stock: pStock,category: pCategory })
         .then(res=>{
             if (res.data.success == true){
                 window.location.reload();
@@ -51,6 +52,10 @@ export default function AddProduct(props){
                         <Grid xs={12} item sx={{py: 2,}}>
                             <TextField required fullWidth autoComplete="false" label="Stock" value={pStock}
                              onChange={(e) => setPStock(e.target.value)} type='number'></TextField>
+                        </Grid>
+                        <Grid xs={12} item sx={{py: 2,}}>
+                            <TextField required fullWidth autoComplete="false" label="Category" value={pCategory}
+                             onChange={(e) => setPCategory(e.target.value)}></TextField>
                         </Grid>
                         <Grid xs={12} item sx={{py: 2,}}>
                             <Button fullWidth variant="contained" size="large"
