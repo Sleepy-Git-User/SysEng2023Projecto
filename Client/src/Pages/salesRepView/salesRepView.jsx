@@ -14,7 +14,7 @@ import { StaticDataContext } from '../../Contexts/StaticDataContext'
 import axios from 'axios';
 
 
-export default function Randompage(){
+export default function SalesPage(){
 
   const GlobalData = useContext(StaticDataContext);
   const arrayOfProducts = GlobalData.static_data.Products
@@ -32,11 +32,12 @@ export default function Randompage(){
     const [itemPrice, setItemPrice] = useState(itemPricing);
     const [myString, setMyString] = useState('Check'); // Declare myString state variable
 
+    /* Function to generate buttons based on database */
     const ButtonArray = () => {
       return (
         <div>
           {arrayOfProducts.map((product, index) => (
-            <Button key={index} onClick={() => handleAddItem(product.Name, product.Price)} sx={{height: 200, width:800}}>ADD {product.Name}</Button>
+            <Button key={index} onClick={() => handleAddItem(product.Name, product.Price)} sx={{height: 100, width:100}}>ADD {product.Name}</Button>
           ))}
         </div>
       );
@@ -57,7 +58,7 @@ export default function Randompage(){
         navigate('/');
       }
 
-      const removeItem = () => {
+      const removeItem = (Price) => {
         setMyArray(prevArray => {
           const removeItem = prevArray[removeValue-1];
           let updatedItemPrice = itemPrice;
@@ -129,7 +130,7 @@ export default function Randompage(){
             <Button sx={{m:2, top: 970, left: 300, minWidth: 150, minHeight: 75 }} variant="contained" onClick={() =>{handleBackdrop(); handleCheckBoxShow();}} color="warning" >Checkout</Button>
 
             {/* Username of the user will be shown here */}
-            <Typography sx={{color: '#5883a7'}} variant="h3">Username</Typography>
+            <Typography sx={{color: '#5883a7'}} variant="h3">ID: {GlobalData.userID}</Typography>
             
             {/* Display Box */}
              <Box display="flex" justifyContent="center" alignItems="center" variant="outlined" sx={{ 
@@ -150,7 +151,9 @@ export default function Randompage(){
                 color: '#5883a7',
                 bgcolor: "white"}}
                 >
+                  <List sx={{maxHeight: 725, maxWidth: 1000, overflow: 'auto'}}>
                     {myArray.map((item,index) => (<div key={index}>{item}</div>))}
+                    </List>
                 </Box>
 
             <Button />

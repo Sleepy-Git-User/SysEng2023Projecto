@@ -4,7 +4,7 @@ import './App.css';
 import StaticDataContextProvider from './Contexts/StaticDataContext';
 import {ProductList} from './Widgets/widgets';
 import Loginpage from './Pages/loginpage/Loginpage';
-import Randompage from './Pages/salesRepView/salesRepView';
+import SalesPage from './Pages/salesRepView/salesRepView';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -31,7 +31,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Outlet></Outlet>}>
               <Route index element = {<Loginpage></Loginpage>}></Route>
-              <Route path="/salesRepView" element={<Randompage></Randompage>}></Route>
+              <Route path="/salesRepView" element={<SalesPage></SalesPage>}></Route>
             </Route>            
         </Routes>
 			</BrowserRouter>
