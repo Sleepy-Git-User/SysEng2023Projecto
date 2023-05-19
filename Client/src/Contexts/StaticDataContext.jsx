@@ -8,6 +8,12 @@ export default function StaticDataContextProvider({children}) {
     const [static_data, setStaticData] = useState(null);
     const [refreshInterval, setRefreshInterval] = useState(null);
     const [increments, setIncrements] = useState(0);
+    const [userID, setUserID] = useState(null);
+
+    function storeUserID(userID){
+        setUserID(userID);
+    }
+
 
     useEffect(() => {
         const interval = setInterval(() =>
@@ -24,7 +30,7 @@ export default function StaticDataContextProvider({children}) {
                 console.error('Failed getting Static Data', e.stack);
             }
         })()
-        , 1000);
+        , 1000);//added 7 0's
         return () => clearInterval(interval);
     }, [])
 
@@ -34,7 +40,9 @@ export default function StaticDataContextProvider({children}) {
     // Serve app with valid data
     return (
         <StaticDataContext.Provider value={{
-            static_data
+            static_data,
+            storeUserID,
+            userID
         }}>
             {children}
         </StaticDataContext.Provider>

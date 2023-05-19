@@ -15,7 +15,7 @@ import axios from 'axios';
 
 
 export default function Randompage(){
-
+  console.log("hi");
   const GlobalData = useContext(StaticDataContext);
   const arrayOfProducts = GlobalData.static_data.Products
         
@@ -129,7 +129,7 @@ export default function Randompage(){
             <Button sx={{m:2, top: 970, left: 300, minWidth: 150, minHeight: 75 }} variant="contained" onClick={() =>{handleBackdrop(); handleCheckBoxShow();}} color="warning" >Checkout</Button>
 
             {/* Username of the user will be shown here */}
-            <Typography sx={{color: '#5883a7'}} variant="h3">Username</Typography>
+            <Typography sx={{color: '#5883a7'}} variant="h3">{GlobalData.userID}</Typography>
             
             {/* Display Box */}
              <Box display="flex" justifyContent="center" alignItems="center" variant="outlined" sx={{ 

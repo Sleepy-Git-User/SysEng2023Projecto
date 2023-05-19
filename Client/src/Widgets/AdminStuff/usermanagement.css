@@ -1,0 +1,14 @@
+.user-table {
+    border-collapse: 1px;
+    padding: 3vh 20vw 5vh;
+    
+}
+
+td{
+    padding: 0.5vh 4vw;
+    border: 1px solid;
+}
+
+th{
+    padding-bottom: 1vh;
+}
