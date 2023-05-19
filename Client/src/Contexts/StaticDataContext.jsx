@@ -8,11 +8,7 @@ export default function StaticDataContextProvider({children}) {
     const [static_data, setStaticData] = useState(null);
     const [refreshInterval, setRefreshInterval] = useState(null);
     const [increments, setIncrements] = useState(0);
-    const [userID, setUserID] = useState(null);
 
-    function storeUserID(userID){
-        setUserID(userID);
-    }
     useEffect(() => {
         const interval = setInterval(() =>
           (async () => {
@@ -38,9 +34,7 @@ export default function StaticDataContextProvider({children}) {
     // Serve app with valid data
     return (
         <StaticDataContext.Provider value={{
-            static_data,
-            storeUserID,
-            userID
+            static_data
         }}>
             {children}
         </StaticDataContext.Provider>
