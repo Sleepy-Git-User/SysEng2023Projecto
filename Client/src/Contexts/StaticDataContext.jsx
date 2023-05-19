@@ -13,6 +13,14 @@ export default function StaticDataContextProvider({children}) {
     function storeUserID(userID){
         setUserID(userID);
     }
+
+
+   
+
+    function storeUserID(userID){
+        setUserID(userID);
+    }
+
     useEffect(() => {
         const interval = setInterval(() =>
           (async () => {
@@ -28,7 +36,7 @@ export default function StaticDataContextProvider({children}) {
                 console.error('Failed getting Static Data', e.stack);
             }
         })()
-        , 1000);
+        , 1000);//added 7 0's
         return () => clearInterval(interval);
     }, [])
 

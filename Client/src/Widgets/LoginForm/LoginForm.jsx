@@ -6,15 +6,15 @@ import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import './loginform.css';
 import axios from "axios";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import { StaticDataContext } from '../../Contexts/StaticDataContext'
-import { useContext } from "react";
+import { StaticDataContext } from "../../Contexts/StaticDataContext";
+
 
 export default function LoginForm(){
-    const GlobalData = useContext(StaticDataContext);
+    
     /*function postUser() {
         axios
           .post('/loginChecker', {
@@ -31,6 +31,8 @@ export default function LoginForm(){
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
     const navigate = useNavigate();
+    const GlobalData = useContext(StaticDataContext);
+
 
     //prevents page automatically refreshing on submit, will direct user to sales/admin view upon authentication
     const handleSubmit = async (e) => {
@@ -38,7 +40,6 @@ export default function LoginForm(){
         await axios.post('/api/loginChecker', { userID: user })
         .then(res=>{
             if (res.data.success == true){
-                GlobalData.storeUserID(user)
                 navigate("/salesRepView");
             }
             else{

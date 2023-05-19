@@ -7,6 +7,7 @@ import SalesPage from './Pages/salesRepView/salesRepView';
 import Loginpage from './Pages/loginpage/Loginpage';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Adminpage from './Pages/adminpage/Adminpage';
 
 const theme = createTheme({
   palette: {
@@ -19,7 +20,8 @@ const theme = createTheme({
   },
 });
 
-import {red} from '@mui/material/colors';
+
+
 
 
 
@@ -33,6 +35,7 @@ function App() {
             <Route path="/" element={<Outlet></Outlet>}>
               <Route index element = {<Loginpage></Loginpage>}></Route>
               <Route path="/salesRepView" element={<SalesPage></SalesPage>}></Route>
+              <Route path='/adminPage' element={<Adminpage></Adminpage>}></Route>
             </Route>            
         </Routes>
 			</BrowserRouter>
