@@ -18,20 +18,19 @@ export default function SalesPage(){
   const GlobalData = useContext(StaticDataContext);
   const arrayOfProducts = GlobalData.static_data.Products
         
-    /* Calculate total */
+    /*let values*/
     let zero = 0;
     let First = '';
     let itemPricing = zero.toFixed(2);
     let runningtotal = zero.toFixed(2);
     
-    /* Price calculator */
+    /* Value setters*/
     const [total, setTotal] = React.useState(runningtotal);
     const [myArray, setMyArray] = useState([]);
     const navigate = useNavigate();
     const [removeValue, setRemoveValue] = useState('');
     const [itemPrice, setItemPrice] = useState(itemPricing);
-    const [myString, setMyString] = useState('Check'); // Declare myString state variable
-
+    const [myString, setMyString] = useState('Check');
     const [userData, setUserData] = useState({});
     const [fname, setFname] = useState('');
     const [lname, setLname] = useState('');
@@ -161,6 +160,7 @@ export default function SalesPage(){
         navigate('/');
       }
 
+      /* function that clears total*/
       const clearTotal = () => {
         (setTotal((+total - +total).toFixed(2)));
         setItemPrice(itemPricing);
