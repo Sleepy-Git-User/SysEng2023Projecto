@@ -3,7 +3,7 @@
  * @returns Express Router
  */
 
-const interface = require("../DataBase/interface.js");
+const interface = require("../DataBase/interface.js")();
 
 module.exports = (components) => {
     const {database, express} = components;
