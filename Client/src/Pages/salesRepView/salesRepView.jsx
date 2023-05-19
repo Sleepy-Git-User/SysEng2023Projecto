@@ -101,7 +101,7 @@ export default function SalesPage(){
             const category = removedProduct ? removedProduct.Category : 'No category';
             const productID = removedProduct ? removedProduct.ProductID : 'N/A';
             return (
-              <Container key={index} sx={{ border: 1, minWidth: 1000, fontWeight: 'bold', display: 'flex' }}>
+              <Container key={index} sx={{ border: 1, minWidth: 950, fontWeight: 'bold', display: 'flex' }}>
                 <div style={{ flex: '1 0 17%', marginRight: '3em' }}>
                   <span>{item}</span>
                 </div>
@@ -238,7 +238,7 @@ export default function SalesPage(){
                 zIndex: 0,
                 border: 5 ,
                 width: 1000, 
-                height: 800, 
+                height: 720, 
                 overflow: 'auto',
                 color: '#5883a7',
                 bgcolor: "white"}}
@@ -249,7 +249,7 @@ export default function SalesPage(){
                 zIndex: 0,
                 border: 0 ,
                 width: 1000, 
-                height: 700, 
+                height: 720, 
                 color: '#5883a7',
                 bgcolor: "white"}}
                 >
@@ -346,9 +346,9 @@ export default function SalesPage(){
                 {/* Price */}
                 <Box position={'absolute'} display="flex" justifyContent="right" alignItems="right" variant="outlined" sx={{ 
                     zIndex: 0,
-                    border: 3 ,
+                    border: 5 ,
                     top: 890,
-                    left: 626,
+                    left: 625,
                     width: 1000, 
                     height: 75, 
                     bgcolor: "white"}} 
@@ -360,7 +360,6 @@ export default function SalesPage(){
                 {/* Backdrop that shows loading when a button is pressed. */}
                 <Backdrop open={open} onClick={() =>{handleBackdrop(); handleConfirmHide(); handleCheckBoxHide(); handleAddHide(); handleRemoveHide();}} sx={{zIndex: 100, position: "absolute"}}>
                     <CircularProgress>
-
                     </CircularProgress>
                 </Backdrop>
         </Container>
