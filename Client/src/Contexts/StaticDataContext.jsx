@@ -10,9 +10,11 @@ export default function StaticDataContextProvider({children}) {
     const [increments, setIncrements] = useState(0);
     const [userID, setUserID] = useState(null);
 
+
     function storeUserID(userID){
         setUserID(userID);
     }
+
     useEffect(() => {
         const interval = setInterval(() =>
           (async () => {

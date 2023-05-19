@@ -29,8 +29,64 @@ function loginChecker(UserID){
   while(Database.inTable("User","UserID",user_id)){
     user_id=generateUniqueCode()
   }
-  const insertUser = Database.database.prepare('INSERT INTO User (UserID, Fname, Lname) VALUES (?,?,?)');
-  insertUser.run(user_id,Fname,Lname);
+  const insertProduct = Database.database.prepare('INSERT INTO Products (ProductID, Name, Description, Price, Stock, Category) VALUES (?,?,?,?,?,?)');
+  insertProduct.run(product_id,name.toUpperCase(),description,price,stock,category);
+  return true;
+}
+
+//addProduct Test
+//addProduct("Watch","An Orange Thing",1300.30,1023);
+
+
+function removeProduct(ProductID){
+  Database.deleteRecord("Products","ProductID",ProductID);
+}
+
+//removeProduct Test
+//removeProduct("9039461");
+
+function getAllProductDetails(){
+  const sql = Database.database.prepare(`SELECT Products.*, IFNULL(ROUND(Products.Price*Discounts.Amount,2),Products.Price) DiscountPrice FROM Products LEFT JOIN Discounts ON Discounts.ProductID = Products.ProductID AND Discounts.StartDateTime < DATE('now') AND Discounts.EndDateTime > DATE('now')`);
+  return sql.all();
+}
+
+//getAllProductDetails Test
+//console.log(getAllProductDetails());
+
+function getSingleProductDetails(ProductID){
+  return Database.getRecord("Products","ProductID",ProductID)
+}
+
+//getSingleProductDetails Test
+//console.log(getSingleProductDetails("6955663"));
+
+function getAllProdcutIDsAndNames(){
+  const sql = Database.database.prepare('SELECT ProductID, Name FROM Products');
+  return sql.all();
+}
+//getAllProductIDsAndNames Test
+//console.log(getAllProdcutIDsAndNames())
+
+function editProductName(ProductID, Value){
+  if(Database.inTable("Products","Name",Value.toUpperCase())) return false;
+  Database.updateRecord("Products","Name",Value.toUpperCase(),"ProductID",ProductID);
+}
+function editProductDescription(ProductID, Value){
+  Database.updateRecord("Products","Description",Value,"ProductID",ProductID);
+}
+function editProductPrice(ProductID, Value){
+  Database.updateRecord("Products","Price",Value,"ProductID",ProductID);
+}
+function editProductStock(ProductID, Value){
+  Database.updateRecord("Products","Stock",Value,"ProductID",ProductID);
+}
+//editProductName etc Test
+editProductName("72645439","Orange Juice");
+
+function makeDiscount(ProductID,Start,End,Amount){
+  if(Database.inTable("Discounts","ProductID",ProductID)){
+    const sql = Database.database.prepare('SELECT * FROM Discounts WHERE ProductID = ? AND EndDateTime > ?');
+  if (sql.all(ProductID,Start).length > 0)return false
   }
   //makeUser Test
   //makeUser("John","Doe");
