@@ -3,6 +3,7 @@ import {Route, Routes, BrowserRouter, Outlet} from 'react-router-dom';
 import './App.css';
 import StaticDataContextProvider from './Contexts/StaticDataContext';
 import {ProductList} from './Widgets/widgets';
+import SalesPage from './Pages/salesRepView/salesRepView';
 import Loginpage from './Pages/loginpage/Loginpage';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -31,6 +32,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Outlet></Outlet>}>
               <Route index element = {<Loginpage></Loginpage>}></Route>
+              <Route path="/salesRepView" element={<SalesPage></SalesPage>}></Route>
             </Route>            
         </Routes>
 			</BrowserRouter>

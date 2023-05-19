@@ -39,7 +39,7 @@ export default function LoginForm(){
         .then(res=>{
             if (res.data.success == true){
                 GlobalData.storeUserID(user)
-                navigate("/");
+                navigate("/salesRepView");
             }
             else{
 
