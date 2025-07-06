@@ -9,7 +9,7 @@ function run(title,expected,result){
     if (expected == result){
         console.log("Function Passed!\n");
     }else{
-        console.log("Function Failed!\n");
+        console.log("\x1b[31m Function Failed!\n\x1b[0m");
     }
 }
 
